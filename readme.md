@@ -1,4 +1,4 @@
-### Simple Mono Repo With Golang
+### Simple CRUD with Golang
 
 #Detail
 
