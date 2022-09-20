@@ -1,0 +1,163 @@
+package service
+
+import (
+	"errors"
+	"fmt"
+	"net/http"
+	"strings"
+
+	"github.com/gin-gonic/gin"
+	"github.com/salimkun/sample-crud-go/common/util"
+	"github.com/salimkun/sample-crud-go/model"
+	"github.com/salimkun/sample-crud-go/repository"
+)
+
+func RegisterUser(c *gin.Context) {
+	var request model.User
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		msg := err.Error()
+		if strings.Contains(err.Error(), "json: cannot unmarshal") {
+			msg = "invalid parameter body please check request again"
+		}
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": msg})
+		return
+	}
+
+	// validation name
+	if request.Name == "" {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "name can't be null or empty"})
+		return
+	}
+
+	// validation email
+	if request.Email == "" {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "email can't be null or empty"})
+		return
+	} else if addr, ok := util.ValidateMailAddress(request.Email); !ok {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": fmt.Errorf("email %s not valid", addr)})
+		return
+	}
+
+	// validation phone number
+	if request.Phone == "" {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "phone_number can't be null or empty"})
+		return
+	} else if request.Phone[0:1] != "0" && request.Phone[0:3] != "+62" {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": request.Phone[0:3]})
+		return
+	} else {
+		users, err := repository.ReadFile()
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err})
+			return
+		}
+
+		if len(users) > 0 {
+			// validate if user exist
+			for _, i := range users {
+				if i.Phone == request.Phone {
+					c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "phone number already register"})
+					return
+				}
+			}
+		}
+
+	}
+
+	// validation linkein url
+	if request.LinkedInUrl != "" {
+		if !strings.Contains(request.LinkedInUrl, "linkedin.com/in/") && !util.ValidateUrl(request.LinkedInUrl) {
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "linkedin_url not valid"})
+			return
+		}
+	}
+
+	// validate portofolio url
+	if request.PortofolioUrl != "" {
+		if !util.ValidateUrl(request.PortofolioUrl) {
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "portofolio_url not valid"})
+			return
+		}
+	}
+	// validate occupation
+	if len(request.Occupations) > 0 {
+		for idx, i := range request.Occupations {
+			err := ValidateOccupation(i)
+			if err != nil {
+				c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": fmt.Errorf("%e in index %d", err, idx)})
+				return
+			}
+			fmt.Println("sampe sini 99")
+
+		}
+	}
+	fmt.Println("sampe sini 2")
+
+	// validate education
+	if len(request.Educations) > 0 {
+		for idx, i := range request.Educations {
+			err := ValidateEducation(i)
+			if err != nil {
+				c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": fmt.Errorf("%e in index %d", err, idx)})
+				return
+			}
+		}
+	}
+
+	fmt.Println("sampe sini 3")
+
+	e := repository.CreateUser(&request)
+	if e != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": e})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": request})
+}
+
+func ValidateOccupation(request model.Occupation) error {
+
+	// validation start_date
+	if request.StartDate != "" {
+		if !util.ValidateDate(request.StartDate) {
+			return errors.New("occupation_start invalid format")
+		}
+	}
+
+	fmt.Println("ALALAL ")
+	// validate end_date
+	if request.EndDate != "" {
+		if !util.ValidateDate(request.EndDate) {
+			return errors.New("occupation_end invalid format")
+		}
+	}
+
+	fmt.Println("ALALAL 2")
+
+	return nil
+}
+
+func ValidateEducation(request model.Education) error {
+	// validation start_date
+	if request.StartDate != "" {
+		if !util.ValidateDate(request.StartDate) {
+			return errors.New("education_start invalid format")
+		}
+	}
+
+	// validate end_date
+	if request.EndDate != "" {
+		if !util.ValidateDate(request.EndDate) {
+			return errors.New("education_end invalid format")
+		}
+	}
+
+	// validate score
+	if request.Score > 0 {
+		if request.Score > 4 {
+			return errors.New("education_score invalid")
+		}
+	}
+	return nil
+}

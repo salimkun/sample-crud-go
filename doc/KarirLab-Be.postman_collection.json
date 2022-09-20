@@ -1,0 +1,27 @@
+{
+	"info": {
+		"_postman_id": "f5918e56-9de2-4412-936e-018d5bcb6467",
+		"name": "KarirLab-Be",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register-User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Peter Parker\",\r\n  \"email\": \"peter.parker@gmail.com\",\r\n  \"phone_number\": \"+62812304931130\",\r\n  \"linkedin_url\": \"peter_parker\",\r\n  \"portfolio_url\": \"https://www.peterparker.com\",\r\n  \"occupations\": [\r\n    {\r\n      \"company_name\": \"Avengers\",\r\n      \"occupation_position\": \"Spider-Man\",\r\n      \"occupation_start\": \"2018-04-26T00:00:00+07:00\",\r\n      \"occupation_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"occupation_status\": \"Full Time\",\r\n      \"occupation_achievement\": [\"Avengers Termuda\"]\r\n    }\r\n  ],\r\n  \"educations\": [\r\n    {\r\n      \"education_name\": \"Midtown High School\",\r\n      \"education_degree\": \"SMA\",\r\n      \"education_faculty\": \"Ilmu Pengetahuan Alam\",\r\n      \"education_city\": \"Queens\",\r\n      \"education_start\": \"2016-04-21T00:00:00+07:00\",\r\n      \"education_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"education_score\": 3.95\r\n    }\r\n  ],\r\n  \"achievements\": [\"Juara 1 Kompetisi Gulat\", \"Juara 1 Lomba Parkour\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8081/api/v1/user"
+			},
+			"response": []
+		}
+	]
+}
