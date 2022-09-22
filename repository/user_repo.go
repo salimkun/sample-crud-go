@@ -13,10 +13,26 @@ func CreateUser(user *model.User) error {
 	if err != nil {
 		return err
 	}
+	if len(getAllfile) > 0 {
+		user.ID = getAllfile[len(getAllfile)].ID + 1
+	} else {
+		user.ID = 1
+	}
+
 	getAllfile = append(getAllfile, user)
 	file, _ := json.MarshalIndent(getAllfile, "", " ")
 
 	err = ioutil.WriteFile("repository/users.json", file, 0644)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func UpdateUser(users []*model.User) error {
+	file, _ := json.MarshalIndent(users, "", " ")
+
+	err := ioutil.WriteFile("repository/users.json", file, 0644)
 	if err != nil {
 		return err
 	}

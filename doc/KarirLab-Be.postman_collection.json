@@ -12,14 +12,83 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Peter Parker\",\r\n  \"email\": \"peter.parker@gmail.com\",\r\n  \"phone_number\": \"+62812304931130\",\r\n  \"linkedin_url\": \"peter_parker\",\r\n  \"portfolio_url\": \"https://www.peterparker.com\",\r\n  \"occupations\": [\r\n    {\r\n      \"company_name\": \"Avengers\",\r\n      \"occupation_position\": \"Spider-Man\",\r\n      \"occupation_start\": \"2018-04-26T00:00:00+07:00\",\r\n      \"occupation_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"occupation_status\": \"Full Time\",\r\n      \"occupation_achievement\": [\"Avengers Termuda\"]\r\n    }\r\n  ],\r\n  \"educations\": [\r\n    {\r\n      \"education_name\": \"Midtown High School\",\r\n      \"education_degree\": \"SMA\",\r\n      \"education_faculty\": \"Ilmu Pengetahuan Alam\",\r\n      \"education_city\": \"Queens\",\r\n      \"education_start\": \"2016-04-21T00:00:00+07:00\",\r\n      \"education_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"education_score\": 3.95\r\n    }\r\n  ],\r\n  \"achievements\": [\"Juara 1 Kompetisi Gulat\", \"Juara 1 Lomba Parkour\"]\r\n}",
+					"raw": "{\r\n  \"name\": \"Peter Parker\",\r\n  \"email\": \"peter.parker@gmail.com\",\r\n  \"phone_number\": \"+62812304931130\",\r\n  \"linkedin_url\": \"https://linkedin.com/in/peterparker\",\r\n  \"portfolio_url\": \"https://www.peterparker.com\",\r\n  \"occupations\": [\r\n    {\r\n      \"company_name\": \"Avengers\",\r\n      \"occupation_position\": \"Spider-Man\",\r\n      \"occupation_start\": \"2018-04-26T00:00:00+07:00\",\r\n      \"occupation_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"occupation_status\": \"Full Time\",\r\n      \"occupation_achievement\": [\"Avengers Termuda\"]\r\n    }\r\n  ],\r\n  \"educations\": [\r\n    {\r\n      \"education_name\": \"Midtown High School\",\r\n      \"education_degree\": \"SMA\",\r\n      \"education_faculty\": \"Ilmu Pengetahuan Alam\",\r\n      \"education_city\": \"Queens\",\r\n      \"education_start\": \"2016-04-21T00:00:00+07:00\",\r\n      \"education_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"education_score\": 3.95\r\n    }\r\n  ],\r\n  \"achievements\": [\"Juara 1 Kompetisi Gulat\", \"Juara 1 Lomba Parkour\"]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "localhost:8081/api/v1/user"
+				"url": "http://127.0.0.1:8080/api/v1/user"
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"id\": 1,\r\n  \"name\": \"Peter Parker 2\",\r\n  \"email\": \"peter.parker@gmail.com\",\r\n  \"phone_number\": \"+62812304931130\",\r\n  \"linkedin_url\": \"https://linkedin.com/in/peterparker\",\r\n  \"portfolio_url\": \"https://www.peterparker.com\",\r\n  \"occupations\": [],\r\n  \"educations\": [],\r\n  \"achievements\": [\"Juara 1 Kompetisi Gulat\", \"Juara 1 Lomba Parkour\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8080/api/v1/user"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Peter Parker\",\r\n  \"email\": \"peter.parker@gmail.com\",\r\n  \"phone_number\": \"+62812304931130\",\r\n  \"linkedin_url\": \"https://linkedin.com/in/peterparker\",\r\n  \"portfolio_url\": \"https://www.peterparker.com\",\r\n  \"occupations\": [\r\n    {\r\n      \"company_name\": \"Avengers\",\r\n      \"occupation_position\": \"Spider-Man\",\r\n      \"occupation_start\": \"2018-04-26T00:00:00+07:00\",\r\n      \"occupation_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"occupation_status\": \"Full Time\",\r\n      \"occupation_achievement\": [\"Avengers Termuda\"]\r\n    }\r\n  ],\r\n  \"educations\": [\r\n    {\r\n      \"education_name\": \"Midtown High School\",\r\n      \"education_degree\": \"SMA\",\r\n      \"education_faculty\": \"Ilmu Pengetahuan Alam\",\r\n      \"education_city\": \"Queens\",\r\n      \"education_start\": \"2016-04-21T00:00:00+07:00\",\r\n      \"education_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"education_score\": 3.95\r\n    }\r\n  ],\r\n  \"achievements\": [\"Juara 1 Kompetisi Gulat\", \"Juara 1 Lomba Parkour\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8080/api/v1/user"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Detail User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Peter Parker\",\r\n  \"email\": \"peter.parker@gmail.com\",\r\n  \"phone_number\": \"+62812304931130\",\r\n  \"linkedin_url\": \"https://linkedin.com/in/peterparker\",\r\n  \"portfolio_url\": \"https://www.peterparker.com\",\r\n  \"occupations\": [\r\n    {\r\n      \"company_name\": \"Avengers\",\r\n      \"occupation_position\": \"Spider-Man\",\r\n      \"occupation_start\": \"2018-04-26T00:00:00+07:00\",\r\n      \"occupation_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"occupation_status\": \"Full Time\",\r\n      \"occupation_achievement\": [\"Avengers Termuda\"]\r\n    }\r\n  ],\r\n  \"educations\": [\r\n    {\r\n      \"education_name\": \"Midtown High School\",\r\n      \"education_degree\": \"SMA\",\r\n      \"education_faculty\": \"Ilmu Pengetahuan Alam\",\r\n      \"education_city\": \"Queens\",\r\n      \"education_start\": \"2016-04-21T00:00:00+07:00\",\r\n      \"education_end\": \"2021-12-17T00:00:00+07:00\",\r\n      \"education_score\": 3.95\r\n    }\r\n  ],\r\n  \"achievements\": [\"Juara 1 Kompetisi Gulat\", \"Juara 1 Lomba Parkour\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8080/api/v1/user/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:8080/api/v1/user/1"
 			},
 			"response": []
 		}

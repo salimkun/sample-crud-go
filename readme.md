@@ -2,7 +2,7 @@
 
 #Detail
 
-- This app just for register user (1 API for register)
+- This app simple CRUD (5 API)
 
 #How to use
 
